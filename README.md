@@ -1,20 +1,20 @@
-# AWS チャットアプリ - BLEA統合・MCP サーバ活用版
+# AWS BLEA上でのアプリケーション開発を通して、セキュリティ関連サービスの利用方法とベストプラクティスを学ぶ
 
-エンタープライズレベルのセキュリティ統制を持つ AWS チャットアプリケーション。BLEA (Baseline Environment on AWS) を活用。
+BLEA (Baseline Environment on AWS) を活用したエンタープライズレベルのセキュリティ統制を持つ AWS チャットアプリケーション開発。
 
 ## 🌟 プロジェクト概要
 
-### 核心価値
-- **BLEA統合**: AWS公式セキュリティベストプラクティスの自動実装
-- **CDK統一**: TypeScript Infrastructure as Code による一貫した開発体験
-- **エンタープライズ対応**: 本番環境で通用するセキュリティ・ガバナンス
+### 研究テーマ
+- **BLEA活用**: AWS公式セキュリティベストプラクティスの深堀
+- **CDK統一**: TypeScript Infrastructure as Code によるインフラ構築技術体験
+- **エンタープライズ対応**: 本番環境で通用するセキュリティ・ガバナンスの調査
 
 ## 🏗️ アーキテクチャ
 
-### システム全体構成（BLEA統合版）
+### システム全体構成
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    BLEA統合アーキテクチャ                      │
+│                        アーキテクチャ                        │
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -25,7 +25,7 @@
     (セキュリティ統制)      (基盤インフラ)         (ビジネスロジック)
 ```
 
-### BLEA自動提供機能
+### 機能
 ```
 🔒 ガバナンスベース（BLEA自動提供）:
 ├── AWS CloudTrail      # API監査ログ
@@ -34,7 +34,7 @@
 ├── Amazon GuardDuty    # 脅威検知
 ├── AWS Secrets Manager # 機密情報管理
 ├── AWS WAF             # Webアプリケーション保護
-└── AWS Chatbot         # Slack通知（セキュリティアラート）
+└── AWS SNS or SMS      # メール通知（セキュリティアラート）
 
 🏗️ ゲストシステム（BLEA + カスタマイズ）:
 ├── VPC + サブネット設計
@@ -104,7 +104,7 @@
 | **file_uploads** | ファイル情報 | ✅ S3統合、ウイルススキャン |
 | **security_events** | セキュリティイベント | ✅ Security Hub連携 |
 
-### セキュリティ設計（BLEA統制）
+### セキュリティ設計
 - **KMS暗号化**: 保存時・転送時の完全暗号化
 - **行レベルセキュリティ**: ユーザー単位のデータ分離
 - **監査ログ**: 全DML操作の自動記録
@@ -140,9 +140,9 @@ npm run cdk deploy
 ### 設定項目（parameter.ts）
 ```typescript
 export const devParameter = {
-  securityNotifyEmail: 'security@example.com',
-  securitySlackWorkspaceId: 'your-slack-workspace-id',
-  securitySlackChannelId: 'your-security-channel-id'
+  securityNotifyEmail: 'aaa@bbb.com',
+  securitySlackWorkspaceId: '',
+  securitySlackChannelId: ''
 };
 ```
 
@@ -194,7 +194,7 @@ export const devParameter = {
 - [API仕様書](docs/aws_chat_app_api_spec.md) - REST API / GraphQL 詳細仕様
 - [テーブル定義書](docs/aws_chat_app_table_definitions.md) - データベース設計詳細
 
-## 🧪 開発コマンド
+## 🧪 開発コマンド[]
 
 ```bash
 # ビルド
